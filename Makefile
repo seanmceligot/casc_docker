@@ -38,7 +38,7 @@ shell:
 build:
 	docker build . -t ${image}
 
-run: 
+run: gen
 	docker run --rm ${VOLUMES} ${ENV} -p 8080:8080 ${image}
 
 lint:  
