@@ -1,0 +1,78 @@
+plugins:
+  sites:
+  - id: "default"
+    url: "https://updates.jenkins.io/update-center.json"
+  required:
+    git: 3.9.1
+    folders: 6.6
+    credentials: latest
+    configuration-as-code: latest
+    configuration-as-code-support: latest
+    matrix-auth: latest
+    job-dsl: latest
+    http_request: latest
+    pipeline-model-definition: latest
+    pipeline-stage-step: latest
+    workflow-aggregator: latest
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+          - name: "admin"
+            description: "Jenkins administrators"
+            permissions:
+              - "Overall/Administer"
+            assignments:
+              - "adminuser"
+          - name: "readonly"
+            description: "Read-only users"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+            assignments:
+              - "user1"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  mode: NORMAL
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  quietPeriod: 5
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+        - id: "adminuser"
+          password: "==adminuser.secret=="
+        - id: user1
+          password: "==user1.secret=="
+  slaveAgentPort: 50000
+  views:
+  - all:
+      name: "all"
+security:
+  remotingCLI:
+    enabled: false
+unclassified:
+  location:
+    url: "http://localhost:8080/"
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  jdk:
+    defaultProperties:
+    - installSource:
+        installers:
+        - jdkInstaller:
+            acceptLicense: false
