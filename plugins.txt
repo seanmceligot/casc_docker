@@ -1,0 +1,10 @@
+ansicolor:latest
+git:latest
+ansible:latest
+role-strategy:latest
+mask-passwords:latest
+cloudbees-folder:latest
+pipeline-model-api:latest
+pipeline-model-extensions:latest
+pipeline-model-definition:latest
+pipeline-model-declarative-agent:latest
