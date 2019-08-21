@@ -1,7 +1,6 @@
-ansicolor:latest
 git:latest
-ansible:latest
-role-strategy:latest
+configuration-as-code:latest
+folder-auth:latest
 mask-passwords:latest
 cloudbees-folder:latest
 pipeline-model-api:latest

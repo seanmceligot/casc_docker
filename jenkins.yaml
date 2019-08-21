@@ -1,0 +1,51 @@
+jenkins:
+  mode: NORMAL
+  numExecutors: 2
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  disableRememberMe: false
+  scmCheckoutRetryCount: 0
+  projectNamingStrategy: "standard"
+  markupFormatter: "plainText"
+  slaveAgentPort: 50000
+  myViewsTabBar: "standard"
+  viewsTabBar: "standard"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+  authorizationStrategy:
+      folderBased:
+        agentRoles:
+          - agents:
+              - "agent1"
+            name: "agentRole1"
+            permissions:
+              - id: "hudson.model.Computer.Configure"
+              - id: "hudson.model.Computer.Disconnect"
+            sids:
+              - "user1"
+        folderRoles:
+          - folders:
+              - "root"
+            name: "viewRoot"
+            permissions:
+              - id: "hudson.model.Item.Read"
+            sids:
+              - "user1"
+        globalRoles:
+          - name: "admin"
+            permissions:
+              - id: "hudson.model.Hudson.Administer"
+            sids:
+              - "admin"
+          - name: "read"
+            permissions:
+              - id: "hudson.model.Hudson.Read"
+            sids:
+              - "user1"
