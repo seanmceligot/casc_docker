@@ -1,9 +1,10 @@
+---
 jenkins:
   mode: NORMAL
   numExecutors: 2
   agentProtocols:
-  - "JNLP4-connect"
-  - "Ping"
+    - "JNLP4-connect"
+    - "Ping"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
@@ -20,32 +21,84 @@ jenkins:
       allowsSignup: false
       enableCaptcha: false
   authorizationStrategy:
-      folderBased:
-        agentRoles:
-          - agents:
-              - "agent1"
-            name: "agentRole1"
-            permissions:
-              - id: "hudson.model.Computer.Configure"
-              - id: "hudson.model.Computer.Disconnect"
-            sids:
-              - "user1"
-        folderRoles:
-          - folders:
-              - "root"
-            name: "viewRoot"
-            permissions:
-              - id: "hudson.model.Item.Read"
-            sids:
-              - "user1"
-        globalRoles:
-          - name: "admin"
-            permissions:
-              - id: "hudson.model.Hudson.Administer"
-            sids:
-              - "admin"
-          - name: "read"
-            permissions:
-              - id: "hudson.model.Hudson.Read"
-            sids:
-              - "user1"
+    folderBased:
+      agentRoles:
+      - agents:
+        - "agent1"
+        name: "agentRole1"
+        permissions:
+        - id: "hudson.model.Computer.Configure"
+        - id: "hudson.model.Computer.Disconnect"
+        sids:
+        - "group2"
+        - "group1"
+      folderRoles:
+      - folders:
+        - "folder1"
+        name: "group1"
+        permissions:
+        - id: "com.cloudbees.plugins.credentials.CredentialsProvider.UseItem"
+        - id: "com.cloudbees.plugins.credentials.CredentialsProvider.UseOwn"
+        - id: "hudson.model.Item.Build"
+        - id: "hudson.model.Item.Cancel"
+        - id: "hudson.model.Item.Configure"
+        - id: "hudson.model.Item.Discover"
+        - id: "hudson.model.Item.ExtendedRead"
+        - id: "hudson.model.Item.Read"
+        - id: "hudson.model.Item.WipeOut"
+        - id: "hudson.model.Item.Workspace"
+        - id: "hudson.model.Run.Artifacts"
+        - id: "hudson.model.Run.Delete"
+        - id: "hudson.model.Run.Replay"
+        - id: "hudson.model.Run.Update"
+        - id: "hudson.model.View.Read"
+        - id: "hudson.scm.SCM.Tag"
+        sids:
+        - "user1"
+      - folders:
+        - "root"
+        name: "viewRoot"
+        permissions:
+        - id: "hudson.model.Item.Read"
+        sids:
+        - "user1"
+        - "user2"
+      - folders:
+        - "folder2"
+        name: "group2"
+        permissions:
+        - id: "com.cloudbees.plugins.credentials.CredentialsProvider.UseItem"
+        - id: "com.cloudbees.plugins.credentials.CredentialsProvider.UseOwn"
+        - id: "hudson.model.Item.Build"
+        - id: "hudson.model.Item.Cancel"
+        - id: "hudson.model.Item.Configure"
+        - id: "hudson.model.Item.Discover"
+        - id: "hudson.model.Item.ExtendedRead"
+        - id: "hudson.model.Item.Read"
+        - id: "hudson.model.Item.WipeOut"
+        - id: "hudson.model.Item.Workspace"
+        - id: "hudson.model.Run.Artifacts"
+        - id: "hudson.model.Run.Delete"
+        - id: "hudson.model.Run.Replay"
+        - id: "hudson.model.Run.Update"
+        - id: "hudson.model.View.Read"
+        - id: "hudson.scm.SCM.Tag"
+        sids:
+        - "user2"
+      globalRoles:
+      - name: "admin"
+        permissions:
+        - id: "hudson.model.Hudson.Administer"
+        sids:
+        - "admin"
+      - name: "login"
+        permissions:
+        - id: "hudson.model.Hudson.Read"
+        sids:
+        - "user1"
+        - "user2"
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
