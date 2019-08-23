@@ -21,3 +21,12 @@ run:
 lint:  
 	yamllint jenkins.yaml
 
+## podman and buildah
+
+buildp:
+	buildah bud -t ${image} .
+shellp:
+	podman run --rm ${VOLUMES} --userns=keep-id -it $(image) /bin/bash -i
+runp: 
+	podman run --rm ${VOLUMES} --userns=keep-id -p 8080:8080 ${image} 2>&1 | tee runp.log
+
