@@ -1,6 +1,6 @@
 git:latest
 configuration-as-code:latest
-folder-auth:1.1-rc135:https://repo.jenkins-ci.org/incrementals/io/jenkins/plugins/folder-auth/1.1-rc135.52eb4af7d1bc/folder-auth-1.1-rc135.52eb4af7d1bc.hpi
+folder-auth:1.0.2
 mask-passwords:latest
 cloudbees-folder:latest
 pipeline-model-api:latest
